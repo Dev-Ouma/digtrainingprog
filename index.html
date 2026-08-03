@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digitisation Training Guide | Open University of Kenya</title>
+<meta name="description" content="Induction training guide for new members of the Open University of Kenya digitisation team: Moodle course building, AI-assisted content conversion, assessment design, multimedia, accessibility and quality assurance.">
+<meta name="author" content="Directorate of ICT, Open University of Kenya">
+<meta name="theme-color" content="#037B90">
+
+<!-- Open Graph / social preview -->
+<meta property="og:title" content="Digitisation Training Guide | Open University of Kenya">
+<meta property="og:description" content="Six-session induction for new digitisation team members.">
+<meta property="og:type" content="website">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome 6 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<!-- AOS scroll animation library -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<!-- Typefaces: Plus Jakarta Sans (display), Inter (body), JetBrains Mono (utility) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<!-- Project styles -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ============================================================
+     SKIP LINK + READING PROGRESS BAR
+     ============================================================ -->
+<a class="skip-link" href="#session-1">Skip to the training sessions</a>
+<div class="read-progress" role="progressbar" aria-label="Page reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="readBar"></span></div>
+
+<!-- ============================================================
+     STICKY HEADER — logo, title, session progress, controls
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <nav class="navbar navbar-expand-xl" aria-label="Main">
+    <div class="container-xl header-bar">
+
+      <a class="navbar-brand brand" href="#top">
+        <img src="https://ouk.ac.ke/sites/default/files/gallery/logo_footer.png"
+             alt="Open University of Kenya" class="brand__logo"
+             onerror="this.classList.add('is-missing')">
+        <span class="brand__text">
+          <span class="brand__name">Open University of Kenya</span>
+          <span class="brand__unit">Directorate of ICT &middot; Digitisation Programme</span>
+        </span>
+      </a>
+
+      <div class="header-bar__actions">
+        <button class="search-trigger" type="button" id="searchTrigger" aria-haspopup="dialog" aria-controls="searchOverlay" title="Search the whole guide (⌘K or /)">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <span class="search-trigger__text">Search</span>
+          <span class="search-trigger__kbd" aria-hidden="true"><kbd>⌘</kbd><kbd>K</kbd></span>
+        </button>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
+                aria-label="Show navigation menu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-xl-center">
+          <li class="nav-item"><a class="nav-link" href="#roadmap">Roadmap</a></li>
+          <li class="nav-item"><a class="nav-link" href="#anatomy">Anatomy</a></li>
+          <li class="nav-item"><a class="nav-link" href="#session-1">Sessions</a></li>
+          <li class="nav-item"><a class="nav-link" href="#checklist">Checklist</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQs</a></li>
+          <li class="nav-item">
+            <a class="nav-cta" href="fullprog.html" target="_blank" rel="noopener">
+              Full programme <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="nav-item nav-item--theme">
+            <button id="themeToggle" class="theme-switch" type="button" role="switch"
+                    aria-checked="false" aria-label="Toggle colour theme">
+              <span class="theme-switch__track" aria-hidden="true">
+                <i class="fa-solid fa-sun theme-switch__sun"></i>
+                <i class="fa-solid fa-moon theme-switch__moon"></i>
+                <span class="theme-switch__thumb"></span>
+              </span>
+              <span class="theme-switch__label" id="themeLabel">Light</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Session progress indicator: fills as the reader moves through the six sessions -->
+  <div class="session-progress" aria-hidden="true">
+    <div class="container-xl">
+      <div class="session-progress__track">
+        <div class="session-progress__fill" id="sessionFill"></div>
+        <ol class="session-progress__nodes" id="progressNodes">
+          <li data-target="#session-1"><span>1</span></li>
+          <li data-target="#session-2"><span>2</span></li>
+          <li data-target="#session-3"><span>3</span></li>
+          <li data-target="#session-4"><span>4</span></li>
+          <li data-target="#session-5"><span>5</span></li>
+          <li data-target="#session-6"><span>6</span></li>
+        </ol>
+      </div>
+      <p class="session-progress__label">Session <strong id="progressCurrent">1</strong> of 6 &middot; <span id="progressName">Introduction</span></p>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     SITE SEARCH — system-wide command overlay (script.js)
+     ============================================================ -->
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-overlay__backdrop" data-search-close></div>
+  <div class="search-overlay__panel" role="dialog" aria-modal="true" aria-label="Search the training guide">
+    <div class="search-overlay__field">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <input type="text" id="searchInput" class="search-overlay__input"
+             placeholder="Search the whole programme&hellip;"
+             autocomplete="off" spellcheck="false" role="combobox"
+             aria-expanded="false" aria-controls="searchResults" aria-autocomplete="list">
+      <button type="button" class="search-overlay__close" data-search-close aria-label="Close search">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="search-overlay__suggest" id="searchSuggest">
+      <p class="search-overlay__suggest-label">Programme highlights</p>
+      <div class="search-overlay__chips" role="list">
+        <button type="button" class="search-chip" data-query="accessibility" role="listitem">Accessibility</button>
+        <button type="button" class="search-chip" data-query="question bank" role="listitem">Question bank</button>
+        <button type="button" class="search-chip" data-query="checklist" role="listitem">Checklist</button>
+        <button type="button" class="search-chip" data-query="Moodle" role="listitem">Moodle</button>
+        <button type="button" class="search-chip" data-query="H5P" role="listitem">H5P</button>
+        <button type="button" class="search-chip" data-query="core workflow" role="listitem">Core workflow</button>
+      </div>
+    </div>
+    <ul class="search-overlay__results" id="searchResults" role="listbox" aria-label="Search results"></ul>
+    <p class="search-overlay__empty" id="searchEmpty" hidden>No matches. Try a programme term such as Moodle, quiz, or accessibility.</p>
+    <div class="search-overlay__hint">
+      <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> navigate</span>
+      <span><kbd>&crarr;</kbd> select</span>
+      <span><kbd>/</kbd> or <kbd>⌘</kbd><kbd>K</kbd> open</span>
+      <span><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="container-xl">
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-6" data-aos="fade-right">
+        <p class="eyebrow"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Induction &middot; 8.00 am to 12.00 noon</p>
+        <h1 class="hero__title">
+          Turning course notes into<br>
+          <span class="grad-text">living Moodle modules</span>
+        </h1>
+        <p class="hero__lead">
+          Your training guide for the digitisation of 4.2 semester undergraduate courses.
+          Six sessions take you from your first look at Moodle to a validated, accessible module
+          ready for students. From noon you work on a live module with a mentor beside you.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#session-1" class="btn btn-ouk"><i class="fa-solid fa-play" aria-hidden="true"></i> Start session 1</a>
+          <a href="#roadmap" class="btn btn-ghost">See the roadmap</a>
+        </div>
+
+        <!-- Programme highlights — at-a-glance figures -->
+        <div class="programme-highlights" aria-labelledby="programmeHighlightsTitle">
+          <p class="programme-highlights__label" id="programmeHighlightsTitle">
+            <i class="fa-solid fa-star" aria-hidden="true"></i> Programme highlights
+          </p>
+          <dl class="stats" aria-label="Programme at a glance">
+            <div class="stats__item">
+              <dt class="stats__num" data-count="6">0</dt><dd>training sessions</dd>
+            </div>
+            <div class="stats__item">
+              <dt class="stats__num" data-count="11">0</dt><dd>Moodle resources</dd>
+            </div>
+            <div class="stats__item">
+              <dt class="stats__num" data-count="12">0</dt><dd>activity types</dd>
+            </div>
+            <div class="stats__item">
+              <dt class="stats__num" data-count="4" data-suffix="hrs">0</dt><dd>before you build live</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Signature illustration: source document becoming a Moodle module -->
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="150">
+        <div class="hero__art">
+          <svg viewBox="0 0 520 400" role="img" aria-label="Illustration of a Word document being converted into a structured Moodle module">
+            <defs>
+              <linearGradient id="gTeal" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#037B90"/><stop offset="100%" stop-color="#02505E"/>
+              </linearGradient>
+              <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FF9C77"/><stop offset="100%" stop-color="#FF7F50"/>
+              </linearGradient>
+            </defs>
+
+            <!-- source document -->
+            <g class="float-a">
+              <rect x="18" y="70" width="150" height="200" rx="12" fill="#fff" stroke="#D7E3E6" stroke-width="2"/>
+              <rect x="38" y="96" width="80" height="9" rx="4.5" fill="#9FB6BC"/>
+              <rect x="38" y="120" width="110" height="7" rx="3.5" fill="#DDE6E8"/>
+              <rect x="38" y="136" width="110" height="7" rx="3.5" fill="#DDE6E8"/>
+              <rect x="38" y="152" width="86" height="7" rx="3.5" fill="#DDE6E8"/>
+              <rect x="38" y="176" width="110" height="7" rx="3.5" fill="#DDE6E8"/>
+              <rect x="38" y="192" width="96" height="7" rx="3.5" fill="#DDE6E8"/>
+              <rect x="38" y="216" width="110" height="7" rx="3.5" fill="#DDE6E8"/>
+              <rect x="38" y="232" width="64" height="7" rx="3.5" fill="#DDE6E8"/>
+              <text x="93" y="292" text-anchor="middle" class="art-cap">Source notes</text>
+            </g>
+
+            <!-- conversion arrow -->
+            <g class="pulse">
+              <path d="M182 170 H236" stroke="url(#gGold)" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 8"/>
+              <path d="M232 160 L248 170 L232 180 Z" fill="#FF7F50"/>
+              <circle cx="209" cy="140" r="16" fill="#FFF0E9"/>
+              <text x="209" y="146" text-anchor="middle" class="art-ai">AI</text>
+            </g>
+
+            <!-- moodle module -->
+            <g class="float-b">
+              <rect x="266" y="42" width="236" height="256" rx="16" fill="url(#gTeal)"/>
+              <rect x="286" y="64" width="196" height="34" rx="8" fill="rgba(255,255,255,.16)"/>
+              <rect x="298" y="76" width="86" height="10" rx="5" fill="#fff" opacity=".85"/>
+              <rect x="286" y="110" width="94" height="72" rx="10" fill="rgba(255,255,255,.12)"/>
+              <rect x="388" y="110" width="94" height="72" rx="10" fill="rgba(255,255,255,.12)"/>
+              <rect x="286" y="194" width="196" height="16" rx="8" fill="rgba(255,255,255,.18)"/>
+              <rect x="286" y="220" width="150" height="16" rx="8" fill="rgba(255,255,255,.18)"/>
+              <rect x="286" y="252" width="104" height="28" rx="14" fill="#FF7F50"/>
+              <circle cx="437" cy="266" r="14" fill="rgba(255,255,255,.2)"/>
+              <path d="M431 266 l5 5 l9 -11" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="384" y="330" text-anchor="middle" class="art-cap">Published module</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BANNER — the promise of the morning
+     ============================================================ -->
+<section class="banner" data-aos="zoom-in">
+  <div class="container-xl banner__inner">
+    <i class="fa-solid fa-quote-left banner__mark" aria-hidden="true"></i>
+    <p>Every module you publish is read by a student who cannot ask you a question.
+       Build it so they never need to.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     ROADMAP TIMELINE — morning path with session outcomes woven in
+     ============================================================ -->
+<section id="roadmap" class="section">
+  <div class="container-xl">
+    <header class="section-head" data-aos="fade-up">
+      <p class="eyebrow"><i class="fa-solid fa-route" aria-hidden="true"></i> Training roadmap</p>
+      <h2>Your morning, session by session</h2>
+      <p class="section-head__sub">Four hours of structured training, then straight into live work.
+        Each stop builds on the last — and leaves you with something you can use by noon.</p>
+    </header>
+
+    <ol class="timeline">
+      <li class="timeline__item" data-aos="fade-up">
+        <span class="timeline__time">8.00</span>
+        <a class="timeline__card timeline__card--link" href="#session-1">
+          <i class="fa-solid fa-hand-sparkles timeline__icon" aria-hidden="true"></i>
+          <span class="timeline__session">Session 1</span>
+          <h3>Introduction</h3>
+          <p>What the programme is, what good looks like, and what you will be able to do by noon.</p>
+          <span class="timeline__outcome">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+            Clear programme standards — structure, naming and the quality bar before you touch a live module
+          </span>
+        </a>
+      </li>
+      <li class="timeline__item" data-aos="fade-up" data-aos-delay="60">
+        <span class="timeline__time">8.40</span>
+        <a class="timeline__card timeline__card--link" href="#session-2">
+          <i class="fa-solid fa-sliders timeline__icon" aria-hidden="true"></i>
+          <span class="timeline__session">Session 2</span>
+          <h3>Preparing the environment</h3>
+          <p>Moodle access, roles, editing mode, software, folders and file naming — so the build never stalls on setup.</p>
+        </a>
+      </li>
+      <li class="timeline__item" data-aos="fade-up" data-aos-delay="120">
+        <span class="timeline__time">9.30</span>
+        <a class="timeline__card timeline__card--link" href="#session-3">
+          <i class="fa-solid fa-diagram-project timeline__icon" aria-hidden="true"></i>
+          <span class="timeline__session">Session 3</span>
+          <h3>Core workflow</h3>
+          <p>Converting notes with AI, chunking, templating, and choosing the right resource or activity.</p>
+          <span class="timeline__outcome">
+            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+            AI-assisted workflow — notes become chunked Moodle content, with the right tool every time
+          </span>
+        </a>
+      </li>
+      <li class="timeline__item" data-aos="fade-up" data-aos-delay="180">
+        <span class="timeline__time">10.30</span>
+        <a class="timeline__card timeline__card--link" href="#session-4">
+          <i class="fa-solid fa-keyboard timeline__icon" aria-hidden="true"></i>
+          <span class="timeline__session">Session 4</span>
+          <h3>Practical exercise</h3>
+          <p>Build a section, a question bank and a quiz on your own assigned module.</p>
+          <span class="timeline__outcome">
+            <i class="fa-solid fa-flask" aria-hidden="true"></i>
+            Hands-on build — a real section, question bank and quiz finished before lunch
+          </span>
+        </a>
+      </li>
+      <li class="timeline__item" data-aos="fade-up" data-aos-delay="240">
+        <span class="timeline__time">11.10</span>
+        <a class="timeline__card timeline__card--link" href="#session-5">
+          <i class="fa-solid fa-shield-halved timeline__icon" aria-hidden="true"></i>
+          <span class="timeline__session">Session 5</span>
+          <h3>Quality assurance</h3>
+          <p>Multimedia, HTML, WCAG accessibility, copyright and the validation checklist.</p>
+          <span class="timeline__outcome">
+            <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
+            Accessible &amp; validated — WCAG checks, copyright hygiene and a signed-off checklist
+          </span>
+        </a>
+      </li>
+      <li class="timeline__item" data-aos="fade-up" data-aos-delay="300">
+        <span class="timeline__time">11.45</span>
+        <a class="timeline__card timeline__card--link" href="#session-6">
+          <i class="fa-solid fa-certificate timeline__icon" aria-hidden="true"></i>
+          <span class="timeline__session">Session 6</span>
+          <h3>Completion</h3>
+          <p>Submission, sign-off and how you keep learning on the job from noon onward.</p>
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================
+     ANATOMY OF A DIGITISED MODULE — interactive module stack
+     ============================================================ -->
+<section id="anatomy" class="section section--tint">
+  <div class="container-xl">
+    <header class="section-head" data-aos="fade-up">
+      <p class="eyebrow"><i class="fa-solid fa-vector-square" aria-hidden="true"></i> What you are building</p>
+      <h2>Anatomy of a digitised module</h2>
+      <p class="section-head__sub">Every module you publish follows the same spine — from overview to
+        “What&rsquo;s Next!”. Select a block to see what belongs there and how it is built in Moodle.</p>
+    </header>
+
+    <div class="anatomy">
+      <!-- live module stack -->
+      <div class="anatomy-stack" data-aos="fade-right" role="list" aria-label="Parts of a digitised module">
+        <header class="anatomy-stack__banner">
+          <p class="anatomy-stack__eyebrow">Moodle module</p>
+          <h3 class="anatomy-stack__name">Sample undergraduate module</h3>
+          <dl class="anatomy-stack__creds">
+            <div>
+              <dt>Module Developer</dt>
+              <dd>Your name here</dd>
+            </div>
+            <div>
+              <dt>Instructional Hours</dt>
+              <dd>X hours</dd>
+            </div>
+          </dl>
+        </header>
+
+        <button type="button" class="anatomy-stack__row is-active" data-part="1" role="listitem" aria-label="Part 1: Module banner and title">
+          <span class="anatomy-stack__n">01</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-flag" aria-hidden="true"></i> Module banner &amp; title</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="2" role="listitem" aria-label="Part 2: Module Overview">
+          <span class="anatomy-stack__n">02</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-map" aria-hidden="true"></i> Module Overview</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="3" role="listitem" aria-label="Part 3: Learning Outcomes">
+          <span class="anatomy-stack__n">03</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning Outcomes</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="4" role="listitem" aria-label="Part 4: Work to Do">
+          <span class="anatomy-stack__n">04</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-list-check" aria-hidden="true"></i> Work to Do</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="5" role="listitem" aria-label="Part 5: Learning Materials">
+          <span class="anatomy-stack__n">05</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Learning Materials</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="6" role="listitem" aria-label="Part 6: Interactive Content, H5P">
+          <span class="anatomy-stack__n">06</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Interactive Content (H5P)</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="7" role="listitem" aria-label="Part 7: Test Your Knowledge">
+          <span class="anatomy-stack__n">07</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Test Your Knowledge</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="8" role="listitem" aria-label="Part 8: Apply What You've Learned">
+          <span class="anatomy-stack__n">08</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-file-arrow-up" aria-hidden="true"></i> Apply What You&rsquo;ve Learned</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="9" role="listitem" aria-label="Part 9: Go Further, Additional Resources">
+          <span class="anatomy-stack__n">09</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Go Further! Additional Resources</span>
+        </button>
+        <button type="button" class="anatomy-stack__row" data-part="10" role="listitem" aria-label="Part 10: What's Next">
+          <span class="anatomy-stack__n">10</span>
+          <span class="anatomy-stack__label"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i> What&rsquo;s Next!</span>
+        </button>
+      </div>
+
+      <!-- the explanation panel -->
+      <div class="anatomy__panel glass" data-aos="fade-left">
+        <div id="partDetail">
+          <p class="anatomy__num">Part 01 of 10</p>
+          <h3 class="anatomy__title">Module banner and title</h3>
+          <dl class="anatomy__meta">
+            <div><dt>Module Developer</dt><dd>Your name here</dd></div>
+            <div><dt>Instructional Hours</dt><dd>X hours</dd></div>
+          </dl>
+          <p class="anatomy__body">The course code, module title and short description sit at the top of every published module. This is also where students first see who built it and how long it takes.</p>
+          <p class="anatomy__built">Built with: <b>Course settings and Label</b></p>
+        </div>
+
+        <ol class="anatomy__dots" id="partDots" aria-label="Choose a part of the module">
+          <li><button type="button" class="is-active" data-part="1" aria-label="Part 1: module banner and title"></button></li>
+          <li><button type="button" data-part="2" aria-label="Part 2: module overview"></button></li>
+          <li><button type="button" data-part="3" aria-label="Part 3: learning outcomes"></button></li>
+          <li><button type="button" data-part="4" aria-label="Part 4: work to do"></button></li>
+          <li><button type="button" data-part="5" aria-label="Part 5: learning materials"></button></li>
+          <li><button type="button" data-part="6" aria-label="Part 6: interactive content, H5P"></button></li>
+          <li><button type="button" data-part="7" aria-label="Part 7: test your knowledge"></button></li>
+          <li><button type="button" data-part="8" aria-label="Part 8: apply what you've learned"></button></li>
+          <li><button type="button" data-part="9" aria-label="Part 9: go further, additional resources"></button></li>
+          <li><button type="button" data-part="10" aria-label="Part 10: what's next"></button></li>
+        </ol>
+
+        <div class="formats">
+          <p class="formats__label">Formats you will work with</p>
+          <ul class="formats__list">
+            <li><i class="fa-solid fa-cube" aria-hidden="true"></i> SCORM</li>
+            <li><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> xAPI</li>
+            <li><i class="fa-brands fa-html5" aria-hidden="true"></i> HTML5</li>
+            <li><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> PDF</li>
+            <li><i class="fa-solid fa-video" aria-hidden="true"></i> MP4</li>
+            <li><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> H5P</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SESSION 1 — INTRODUCTION
+     ============================================================ -->
+<section id="session-1" class="session" data-session="Introduction">
+  <div class="container-xl">
+    <div class="session__grid">
+
+      <div class="session__intro" data-aos="fade-right">
+        <p class="session__no"><span>Session</span> 01</p>
+        <h2 class="session__title"><i class="fa-solid fa-hand-sparkles sess-icon float" aria-hidden="true"></i> Introduction</h2>
+        <p class="session__lead">
+          Welcome to the digitisation team. You are joining an exercise that puts every 4.2 semester
+          undergraduate course into Moodle in a consistent, accessible, student-ready form.
+          This session sets out what that means in practice.
+        </p>
+
+        <div class="objectives" data-aos="fade-up">
+          <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning objectives</h3>
+          <ul>
+            <li>Explain the scope and purpose of the digitisation exercise</li>
+            <li>Describe what a completed digitised module looks like</li>
+            <li>Identify the roles of technical, non-technical and multimedia digitisers</li>
+            <li>State your own targets, timelines and reporting line</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session__art" data-aos="fade-left">
+        <svg viewBox="0 0 420 300" role="img" aria-label="Three digitiser roles working around a shared module">
+          <circle cx="210" cy="150" r="96" fill="var(--tint)"/>
+          <rect x="150" y="92" width="120" height="116" rx="12" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+          <rect x="166" y="112" width="60" height="8" rx="4" fill="var(--teal)"/>
+          <rect x="166" y="130" width="88" height="6" rx="3" fill="var(--line)"/>
+          <rect x="166" y="144" width="88" height="6" rx="3" fill="var(--line)"/>
+          <rect x="166" y="166" width="46" height="20" rx="10" fill="var(--gold)"/>
+          <g class="orbit">
+            <circle cx="210" cy="34" r="22" fill="var(--teal)"/><text x="210" y="40" text-anchor="middle" class="art-badge">TEC</text>
+            <circle cx="330" cy="216" r="22" fill="var(--gold)"/><text x="330" y="222" text-anchor="middle" class="art-badge">NON</text>
+            <circle cx="90" cy="216" r="22" fill="var(--ink)"/><text x="90" y="222" text-anchor="middle" class="art-badge">MM</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- steps -->
+    <div class="steps" data-aos="fade-up">
+      <h3 class="block-title"><i class="fa-solid fa-list-ol" aria-hidden="true"></i> How the programme runs</h3>
+      <ol class="steps__list">
+        <li><span class="steps__n">1</span><div><strong>You are assigned modules.</strong> Each digitiser receives named modules with a due date. Nothing is picked up informally.</div></li>
+        <li><span class="steps__n">2</span><div><strong>You digitise to the standard.</strong> The same template, naming and formatting rules apply to every module, whoever builds it.</div></li>
+        <li><span class="steps__n">3</span><div><strong>You self-check, then submit.</strong> Run the checklist against your own work before it goes for validation.</div></li>
+        <li><span class="steps__n">4</span><div><strong>Validation returns corrections.</strong> You close them out and the module is signed off and published.</div></li>
+      </ol>
+    </div>
+
+    <!-- takeaways + tip -->
+    <div class="row g-4 mt-1">
+      <div class="col-md-7" data-aos="fade-up">
+        <div class="takeaways">
+          <h3><i class="fa-solid fa-key" aria-hidden="true"></i> Key takeaways</h3>
+          <ul>
+            <li>Consistency across modules matters more than individual flair</li>
+            <li>A digitised module is finished only when it passes validation</li>
+            <li>Your reporting line is your team lead, then the Directorate of ICT</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-5" data-aos="fade-up" data-aos-delay="80">
+        <aside class="callout callout--tip">
+          <h4><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Tip</h4>
+          <p>Open a module that has already been signed off and read it as a student would. That is the target you are building towards.</p>
+        </aside>
+      </div>
+    </div>
+
+    <nav class="session-nav" aria-label="Session 1 navigation">
+      <span class="session-nav__spacer"></span>
+      <a href="#session-2" class="btn btn-ouk">Next: Preparing the environment <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============================================================
+     SESSION 2 — PREPARING THE ENVIRONMENT
+     ============================================================ -->
+<section id="session-2" class="session session--alt" data-session="Preparing the environment">
+  <div class="container-xl">
+    <div class="session__grid session__grid--flip">
+
+      <div class="session__intro" data-aos="fade-left">
+        <p class="session__no"><span>Session</span> 02</p>
+        <h2 class="session__title"><i class="fa-solid fa-sliders sess-icon float" aria-hidden="true"></i> Preparing the environment</h2>
+        <p class="session__lead">
+          Before you touch content, get Moodle and your workstation into a state where the work is fast
+          and repeatable. Most lost time on this programme comes from a badly set up environment.
+        </p>
+
+        <div class="objectives" data-aos="fade-up">
+          <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning objectives</h3>
+          <ul>
+            <li>Navigate the Moodle interface and switch roles confidently</li>
+            <li>Create a course, configure its settings and set a course image</li>
+            <li>Organise course categories and manage roles and permissions</li>
+            <li>Apply the folder structure and file naming conventions used on the programme</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session__art" data-aos="fade-right">
+        <svg viewBox="0 0 420 300" role="img" aria-label="Moodle course settings panel with editing switched on">
+          <rect x="40" y="46" width="340" height="210" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+          <rect x="40" y="46" width="340" height="36" rx="14" fill="var(--teal)"/>
+          <circle cx="64" cy="64" r="5" fill="#fff" opacity=".7"/><circle cx="82" cy="64" r="5" fill="#fff" opacity=".45"/>
+          <rect x="60" y="102" width="120" height="130" rx="10" fill="var(--tint)"/>
+          <rect x="74" y="118" width="80" height="7" rx="3.5" fill="var(--teal)" opacity=".55"/>
+          <rect x="74" y="136" width="92" height="6" rx="3" fill="var(--line)"/>
+          <rect x="74" y="152" width="70" height="6" rx="3" fill="var(--line)"/>
+          <rect x="74" y="176" width="92" height="6" rx="3" fill="var(--line)"/>
+          <rect x="200" y="102" width="160" height="52" rx="10" fill="var(--tint)"/>
+          <rect x="216" y="120" width="90" height="8" rx="4" fill="var(--line)"/>
+          <g class="toggle-pop">
+            <rect x="200" y="170" width="86" height="32" rx="16" fill="var(--gold)"/>
+            <circle cx="270" cy="186" r="12" fill="#fff"/>
+            <text x="228" y="191" text-anchor="middle" class="art-badge">EDIT</text>
+          </g>
+          <rect x="300" y="170" width="60" height="32" rx="10" fill="var(--tint)"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- flip cards: what you need in place -->
+    <h3 class="block-title" data-aos="fade-up"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> What you need in place</h3>
+    <p class="block-sub" data-aos="fade-up">Tap or hover a card to see the detail.</p>
+    <div class="row g-4 flip-row">
+
+      <div class="col-md-6 col-lg-3" data-aos="zoom-in">
+        <div class="flip" tabindex="0" role="button" aria-label="Required software — show details">
+          <div class="flip__inner">
+            <div class="flip__face flip__front">
+              <i class="fa-solid fa-laptop-code" aria-hidden="true"></i><h4>Required software</h4>
+            </div>
+            <div class="flip__face flip__back">
+              <p>Current Chrome or Edge, Office or LibreOffice, a PDF reader, VS Code for HTML and SCSS, Panopto recorder, and an approved AI assistant.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="70">
+        <div class="flip" tabindex="0" role="button" aria-label="Folder structure — show details">
+          <div class="flip__inner">
+            <div class="flip__face flip__front">
+              <i class="fa-solid fa-folder-tree" aria-hidden="true"></i><h4>Folder structure</h4>
+            </div>
+            <div class="flip__face flip__back">
+              <p><code>/CODE-Title/</code> then <code>01-source/</code>, <code>02-working/</code>, <code>03-media/</code>, <code>04-final/</code>. Never edit inside <code>01-source</code>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="140">
+        <div class="flip" tabindex="0" role="button" aria-label="File naming — show details">
+          <div class="flip__inner">
+            <div class="flip__face flip__front">
+              <i class="fa-solid fa-tag" aria-hidden="true"></i><h4>File naming</h4>
+            </div>
+            <div class="flip__face flip__back">
+              <p><code>CODE_topic_v03.docx</code> — lower case, underscores, two-digit version, no spaces, no personal names, no “final_final”.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="210">
+        <div class="flip" tabindex="0" role="button" aria-label="System requirements — show details">
+          <div class="flip__inner">
+            <div class="flip__face flip__front">
+              <i class="fa-solid fa-microchip" aria-hidden="true"></i><h4>System requirements</h4>
+            </div>
+            <div class="flip__face flip__back">
+              <p>8 GB RAM or more, a stable connection for uploads, headphones for captioning, and your OUK account with the editing-teacher role.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-1">
+      <div class="col-md-7" data-aos="fade-up">
+        <div class="takeaways">
+          <h3><i class="fa-solid fa-key" aria-hidden="true"></i> Key takeaways</h3>
+          <ul>
+            <li>Switch role to Student before you decide a page is finished</li>
+            <li>Categories carry meaning — put the course where a student would look for it</li>
+            <li>A file named properly today saves an hour of searching next week</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-5" data-aos="fade-up" data-aos-delay="80">
+        <aside class="callout callout--warn">
+          <h4><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Watch out</h4>
+          <p>Editing mode off is the most common reason people think Moodle is broken. Check the toggle first.</p>
+        </aside>
+      </div>
+    </div>
+
+    <nav class="session-nav" aria-label="Session 2 navigation">
+      <a href="#session-1" class="btn btn-ghost"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous</a>
+      <a href="#session-3" class="btn btn-ouk">Next: Core workflow <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============================================================
+     SESSION 3 — CORE WORKFLOW
+     ============================================================ -->
+<section id="session-3" class="session" data-session="Core workflow">
+  <div class="container-xl">
+    <div class="session__grid">
+
+      <div class="session__intro" data-aos="fade-right">
+        <p class="session__no"><span>Session</span> 03</p>
+        <h2 class="session__title"><i class="fa-solid fa-diagram-project sess-icon float" aria-hidden="true"></i> Core workflow</h2>
+        <p class="session__lead">
+          This is the heart of the job: taking a Word, PDF or HTML source and turning it into a
+          structured Moodle module. AI does the first pass. You are the expert who reads it through.
+        </p>
+
+        <div class="objectives" data-aos="fade-up">
+          <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning objectives</h3>
+          <ul>
+            <li>Convert source notes into Moodle content with AI assistance</li>
+            <li>Chunk lengthy content into sections a student can finish in one sitting</li>
+            <li>Build reusable content templates, including Canvas templates for H5P.org</li>
+            <li>Apply consistent CSS and SCSS standards with uniquely named divs</li>
+            <li>Choose the right resource or activity for each purpose</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session__art" data-aos="fade-left">
+        <svg viewBox="0 0 420 300" role="img" aria-label="A long document being split into chunked sections">
+          <rect x="34" y="40" width="110" height="220" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+          <g fill="var(--line)">
+            <rect x="50" y="60" width="78" height="6" rx="3"/><rect x="50" y="74" width="78" height="6" rx="3"/>
+            <rect x="50" y="88" width="78" height="6" rx="3"/><rect x="50" y="102" width="60" height="6" rx="3"/>
+            <rect x="50" y="126" width="78" height="6" rx="3"/><rect x="50" y="140" width="78" height="6" rx="3"/>
+            <rect x="50" y="154" width="70" height="6" rx="3"/><rect x="50" y="178" width="78" height="6" rx="3"/>
+            <rect x="50" y="192" width="78" height="6" rx="3"/><rect x="50" y="206" width="54" height="6" rx="3"/>
+          </g>
+          <path d="M160 150 H196" stroke="var(--gold)" stroke-width="4" stroke-linecap="round" class="dash"/>
+          <g class="stagger">
+            <rect x="214" y="48" width="170" height="60" rx="12" fill="var(--teal)"/>
+            <rect x="230" y="68" width="80" height="8" rx="4" fill="#fff" opacity=".8"/>
+            <rect x="230" y="84" width="120" height="6" rx="3" fill="#fff" opacity=".4"/>
+
+            <rect x="214" y="120" width="170" height="60" rx="12" fill="var(--teal)" opacity=".82"/>
+            <rect x="230" y="140" width="70" height="8" rx="4" fill="#fff" opacity=".8"/>
+            <rect x="230" y="156" width="110" height="6" rx="3" fill="#fff" opacity=".4"/>
+
+            <rect x="214" y="192" width="170" height="60" rx="12" fill="var(--gold)"/>
+            <rect x="230" y="212" width="90" height="8" rx="4" fill="#fff" opacity=".9"/>
+            <rect x="230" y="228" width="104" height="6" rx="3" fill="#fff" opacity=".5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- visual pipeline: the conversion as a flow -->
+    <h3 class="block-title" data-aos="fade-up"><i class="fa-solid fa-arrow-right-arrow-left" aria-hidden="true"></i> The conversion pipeline</h3>
+    <ol class="pipeline" data-aos="fade-up">
+      <li class="pipeline__node"><span class="pipeline__dot"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span><b>Read</b><em>whole source</em></li>
+      <li class="pipeline__node"><span class="pipeline__dot"><i class="fa-solid fa-broom" aria-hidden="true"></i></span><b>Clean</b><em>strip artefacts</em></li>
+      <li class="pipeline__node pipeline__node--ai"><span class="pipeline__dot"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></span><b>Convert</b><em>AI first pass</em></li>
+      <li class="pipeline__node pipeline__node--you"><span class="pipeline__dot"><i class="fa-solid fa-glasses" aria-hidden="true"></i></span><b>Verify</b><em>you, the expert</em></li>
+      <li class="pipeline__node"><span class="pipeline__dot"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i></span><b>Chunk</b><em>one idea each</em></li>
+      <li class="pipeline__node"><span class="pipeline__dot"><i class="fa-solid fa-object-group" aria-hidden="true"></i></span><b>Template</b><em>shared classes</em></li>
+      <li class="pipeline__node"><span class="pipeline__dot"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i></span><b>Interact</b><em>H5P or quiz</em></li>
+    </ol>
+
+    <!-- the workflow, step by step -->
+    <div class="steps" data-aos="fade-up">
+      <h3 class="block-title"><i class="fa-solid fa-list-ol" aria-hidden="true"></i> The seven-step conversion</h3>
+      <ol class="steps__list steps__list--two">
+        <li><span class="steps__n">1</span><div><strong>Read the source first.</strong> Skim the whole document before converting anything. You cannot chunk what you have not read.</div></li>
+        <li><span class="steps__n">2</span><div><strong>Clean the source.</strong> Strip page numbers, headers, footers and scanned artefacts. Rubbish in, rubbish out.</div></li>
+        <li><span class="steps__n">3</span><div><strong>Convert with AI.</strong> Prompt for structured HTML with headings, lists and tables. Ask for the structure, not a rewrite of the scholarship.</div></li>
+        <li><span class="steps__n">4</span><div><strong>Read it through as the expert.</strong> Check every fact, formula and figure against the source. AI output is a draft, never a deliverable.</div></li>
+        <li><span class="steps__n">5</span><div><strong>Chunk into sections.</strong> One idea per page or book chapter, with objectives at the top and a check for understanding at the end.</div></li>
+        <li><span class="steps__n">6</span><div><strong>Apply the template.</strong> Drop the content into the approved template. Use the shared classes, and give each div a unique, meaningful name.</div></li>
+        <li><span class="steps__n">7</span><div><strong>Add interaction.</strong> An H5P element, a glossary entry or a short quiz turns a page of reading into a lesson.</div></li>
+      </ol>
+    </div>
+
+    <!-- demonstration cards: resources and activities -->
+    <h3 class="block-title" data-aos="fade-up"><i class="fa-solid fa-cubes" aria-hidden="true"></i> Choosing the right building block</h3>
+    <div class="row g-4">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="demo-card">
+          <h4><i class="fa-solid fa-box-archive" aria-hidden="true"></i> Resources — for content</h4>
+          <ul class="chiplist">
+            <li><b>Page</b> a single screen of content</li>
+            <li><b>Book</b> a multi-chapter topic</li>
+            <li><b>File</b> one downloadable document</li>
+            <li><b>Folder</b> a set of related files</li>
+            <li><b>URL</b> a link out</li>
+            <li><b>Label</b> a heading or note in the course page</li>
+            <li><b>IMS Content Package</b> imported packaged content</li>
+            <li><b>SCORM Package</b> tracked packaged content</li>
+            <li><b>H5P Interactive Content</b> interaction inside the page</li>
+            <li><b>Database</b> a structured collection students add to</li>
+            <li><b>Glossary</b> defined terms, linked automatically</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="demo-card demo-card--gold">
+          <h4><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i> Activities — for doing</h4>
+          <ul class="chiplist">
+            <li><b>Assignment</b> submitted and marked work</li>
+            <li><b>Quiz</b> auto-marked assessment</li>
+            <li><b>Forum</b> asynchronous discussion</li>
+            <li><b>Choice</b> a single quick poll</li>
+            <li><b>Feedback</b> a custom questionnaire</li>
+            <li><b>Survey</b> standard instruments</li>
+            <li><b>Workshop</b> peer assessment</li>
+            <li><b>Wiki</b> co-authored pages</li>
+            <li><b>Chat</b> live text sessions</li>
+            <li><b>Lesson</b> branching, conditional paths</li>
+            <li><b>Attendance</b> session registers</li>
+            <li><b>H5P activity</b> graded interactive tasks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- common mistakes accordion -->
+    <h3 class="block-title mt-5" data-aos="fade-up"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Common mistakes</h3>
+    <div class="accordion ouk-accordion" id="mistakes" data-aos="fade-up">
+      <div class="accordion-item">
+        <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#m1">Pasting straight from Word</button></h4>
+        <div id="m1" class="accordion-collapse collapse" data-bs-parent="#mistakes"><div class="accordion-body">
+          Word carries hidden styles that break the Moodle theme and fail contrast checks. Paste as plain text, then apply the template classes yourself.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#m2">Shipping the AI draft unread</button></h4>
+        <div id="m2" class="accordion-collapse collapse" data-bs-parent="#mistakes"><div class="accordion-body">
+          AI reorders, summarises and occasionally invents. You are the subject expert on that module — read every line against the source before you save.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#m3">One enormous page per topic</button></h4>
+        <div id="m3" class="accordion-collapse collapse" data-bs-parent="#mistakes"><div class="accordion-body">
+          If a student cannot finish a section in one sitting, it is too long. Split it into a Book with chapters, or several Pages with a clear order.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h4 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#m4">Reusing div names across modules</button></h4>
+        <div id="m4" class="accordion-collapse collapse" data-bs-parent="#mistakes"><div class="accordion-body">
+          Generic names like <code>.box</code> collide with the theme and with other modules. Prefix everything: <code>.ouk-mod-intro</code>, <code>.ouk-mod-callout</code>.
+        </div></div>
+      </div>
+    </div>
+
+    <nav class="session-nav" aria-label="Session 3 navigation">
+      <a href="#session-2" class="btn btn-ghost"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous</a>
+      <a href="#session-4" class="btn btn-ouk">Next: Practical exercise <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============================================================
+     SESSION 4 — PRACTICAL EXERCISE
+     ============================================================ -->
+<section id="session-4" class="session session--alt" data-session="Practical exercise">
+  <div class="container-xl">
+    <div class="session__grid session__grid--flip">
+
+      <div class="session__intro" data-aos="fade-left">
+        <p class="session__no"><span>Session</span> 04</p>
+        <h2 class="session__title"><i class="fa-solid fa-keyboard sess-icon float" aria-hidden="true"></i> Practical exercise</h2>
+        <p class="session__lead">
+          Hands on the keyboard. You will build one complete section of your assigned module,
+          then assess it. Work at your own pace and tick each task off as you finish it.
+        </p>
+
+        <div class="objectives" data-aos="fade-up">
+          <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning objectives</h3>
+          <ul>
+            <li>Build a branded module template with objectives, content and a check for understanding</li>
+            <li>Create question bank categories and items across the main question types</li>
+            <li>Assemble a randomised quiz with feedback configured</li>
+            <li>Embed one piece of multimedia correctly, with captions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session__art" data-aos="fade-right">
+        <svg viewBox="0 0 420 300" role="img" aria-label="A quiz being assembled from a question bank">
+          <rect x="36" y="60" width="150" height="180" rx="12" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+          <text x="111" y="88" text-anchor="middle" class="art-cap">Question bank</text>
+          <g class="stagger">
+            <rect x="54" y="100" width="114" height="26" rx="8" fill="var(--tint)"/>
+            <rect x="54" y="134" width="114" height="26" rx="8" fill="var(--tint)"/>
+            <rect x="54" y="168" width="114" height="26" rx="8" fill="var(--tint)"/>
+            <rect x="54" y="202" width="114" height="26" rx="8" fill="var(--tint)"/>
+          </g>
+          <path d="M198 150 H232" stroke="var(--gold)" stroke-width="4" stroke-linecap="round" class="dash"/>
+          <rect x="248" y="72" width="140" height="156" rx="12" fill="var(--teal)"/>
+          <rect x="266" y="94" width="80" height="9" rx="4.5" fill="#fff" opacity=".85"/>
+          <g fill="#fff" opacity=".28">
+            <rect x="266" y="118" width="104" height="20" rx="6"/>
+            <rect x="266" y="146" width="104" height="20" rx="6"/>
+          </g>
+          <rect x="266" y="146" width="104" height="20" rx="6" fill="var(--gold)"/>
+          <rect x="266" y="186" width="72" height="24" rx="12" fill="#fff" opacity=".9"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- question type gallery -->
+    <h3 class="block-title" data-aos="fade-up"><i class="fa-solid fa-shapes" aria-hidden="true"></i> Question types at a glance</h3>
+    <p class="block-sub" data-aos="fade-up">Aim for at least four different types in every question bank category.</p>
+    <div class="qgrid" data-aos="fade-up">
+
+      <article class="qcard">
+        <svg viewBox="0 0 120 74" aria-hidden="true">
+          <rect x="8" y="10" width="104" height="10" rx="5" fill="var(--line)"/>
+          <circle cx="15" cy="34" r="6" fill="var(--teal)"/><rect x="28" y="30" width="66" height="8" rx="4" fill="var(--line)"/>
+          <circle cx="15" cy="54" r="6" fill="none" stroke="var(--line)" stroke-width="2"/><rect x="28" y="50" width="54" height="8" rx="4" fill="var(--line)"/>
+        </svg>
+        <h4>Multiple choice</h4><p>One correct option, plausible distractors.</p>
+      </article>
+
+      <article class="qcard">
+        <svg viewBox="0 0 120 74" aria-hidden="true">
+          <rect x="8" y="14" width="42" height="12" rx="6" fill="var(--tint)"/><rect x="70" y="14" width="42" height="12" rx="6" fill="var(--tint)"/>
+          <rect x="8" y="34" width="42" height="12" rx="6" fill="var(--tint)"/><rect x="70" y="34" width="42" height="12" rx="6" fill="var(--tint)"/>
+          <rect x="8" y="54" width="42" height="12" rx="6" fill="var(--tint)"/><rect x="70" y="54" width="42" height="12" rx="6" fill="var(--tint)"/>
+          <path d="M52 20 L68 40 M52 40 L68 20 M52 60 L68 60" stroke="var(--teal)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <h4>Matching</h4><p>Pairs a term with its definition or example.</p>
+      </article>
+
+      <article class="qcard">
+        <svg viewBox="0 0 120 74" aria-hidden="true">
+          <rect x="8" y="16" width="46" height="8" rx="4" fill="var(--line)"/>
+          <rect x="60" y="12" width="34" height="16" rx="5" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 3"/>
+          <rect x="8" y="40" width="30" height="8" rx="4" fill="var(--line)"/>
+          <rect x="44" y="36" width="34" height="16" rx="5" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 3"/>
+          <rect x="84" y="40" width="26" height="8" rx="4" fill="var(--line)"/>
+          <rect x="8" y="60" width="72" height="8" rx="4" fill="var(--line)"/>
+        </svg>
+        <h4>Embedded answers (Cloze)</h4><p>Gaps inside a passage, marked automatically.</p>
+      </article>
+
+      <article class="qcard">
+        <svg viewBox="0 0 120 74" aria-hidden="true">
+          <rect x="8" y="12" width="48" height="24" rx="7" fill="var(--teal)" opacity=".18" stroke="var(--teal)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <rect x="66" y="12" width="46" height="24" rx="7" fill="var(--teal)"/>
+          <rect x="8" y="46" width="48" height="22" rx="7" fill="var(--gold)"/>
+          <rect x="66" y="46" width="46" height="22" rx="7" fill="var(--tint)" stroke="var(--line)"/>
+          <path d="M58 24 h6" stroke="var(--ink-soft)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h4>Drag and drop</h4><p>Onto text, onto an image, or into markers.</p>
+      </article>
+
+      <article class="qcard">
+        <svg viewBox="0 0 120 74" aria-hidden="true">
+          <rect x="8" y="10" width="104" height="12" rx="6" fill="var(--line)"/>
+          <rect x="8" y="30" width="60" height="30" rx="8" fill="var(--tint)" stroke="var(--teal)" stroke-width="1.5"/>
+          <text x="38" y="51" text-anchor="middle" font-family="monospace" font-size="15" font-weight="700" fill="var(--teal)">42</text>
+          <rect x="78" y="38" width="34" height="14" rx="7" fill="var(--gold)"/>
+        </svg>
+        <h4>Numerical &amp; STACK</h4><p>Tolerances, units, and full maths marking.</p>
+      </article>
+
+      <article class="qcard">
+        <svg viewBox="0 0 120 74" aria-hidden="true">
+          <rect x="8" y="10" width="104" height="56" rx="8" fill="var(--grey-dark)"/>
+          <g font-family="monospace" font-size="9" fill="#7FD8E6">
+            <text x="18" y="27">def solve(n):</text>
+            <text x="26" y="41" fill="#FFB08F">return n * 2</text>
+            <text x="18" y="55" fill="#8AA3AA">&gt;&gt;&gt; 84</text>
+          </g>
+        </svg>
+        <h4>CodeRunner</h4><p>Runs student code against your test cases.</p>
+      </article>
+    </div>
+
+    <!-- interactive checklist + progress tracker -->
+    <div class="row g-4 align-items-start" id="checklist">
+      <div class="col-lg-7" data-aos="fade-up">
+        <div class="checklist">
+          <h3><i class="fa-solid fa-list-check" aria-hidden="true"></i> Practice tasks</h3>
+          <p class="checklist__hint">Tick each one as you complete it. Your progress is shown on the right.</p>
+          <ul class="checklist__items">
+            <li><label><input type="checkbox" class="task"><span>Create the section with a heading, objectives and an overview paragraph</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Convert two pages of the source with AI, then read them through against the original</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Split the content into chunks and apply the module template</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Add a Book or Page resource and one Label to signpost it</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Create a question bank category named after the section</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Write ten questions across at least four question types</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Build a ten-question quiz with randomisation and automatic feedback</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Embed one video with captions and alternative text on every image</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Switch role to Student and walk the section end to end</span></label></li>
+            <li><label><input type="checkbox" class="task"><span>Record the module in the tracker and note anything unresolved</span></label></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-5" data-aos="fade-up" data-aos-delay="80">
+        <div class="tracker glass">
+          <h3><i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Progress tracker</h3>
+          <div class="tracker__ring" role="img" aria-label="Practice task completion">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" class="ring-bg"/>
+              <circle cx="60" cy="60" r="52" class="ring-fg" id="ringFg"/>
+            </svg>
+            <span class="tracker__pct" id="taskPct">0%</span>
+          </div>
+          <p class="tracker__count"><strong id="taskDone">0</strong> of 10 tasks complete</p>
+          <button class="btn btn-ghost btn-sm" id="resetTasks" type="button">Reset tasks</button>
+
+          <aside class="callout callout--tip mt-4">
+            <h4><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Tip</h4>
+            <p>Build the quiz before you polish the styling. Assessment exposes gaps in the content faster than proofreading does.</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <div class="takeaways mt-4" data-aos="fade-up">
+      <h3><i class="fa-solid fa-key" aria-hidden="true"></i> Key takeaways</h3>
+      <ul>
+        <li>Question categories named after sections make randomisation trivial later</li>
+        <li>Every image needs alternative text at the moment you insert it, not afterwards</li>
+        <li>The student view is the only view that counts</li>
+      </ul>
+    </div>
+
+    <nav class="session-nav" aria-label="Session 4 navigation">
+      <a href="#session-3" class="btn btn-ghost"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous</a>
+      <a href="#session-5" class="btn btn-ouk">Next: Quality assurance <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============================================================
+     SESSION 5 — QUALITY ASSURANCE
+     ============================================================ -->
+<section id="session-5" class="session" data-session="Quality assurance">
+  <div class="container-xl">
+    <div class="session__grid">
+
+      <div class="session__intro" data-aos="fade-right">
+        <p class="session__no"><span>Session</span> 05</p>
+        <h2 class="session__title"><i class="fa-solid fa-shield-halved sess-icon float" aria-hidden="true"></i> Quality assurance</h2>
+        <p class="session__lead">
+          A module is not finished when it looks finished. This session covers multimedia handling,
+          HTML and accessibility standards, copyright, and the review that every module passes through.
+        </p>
+
+        <div class="objectives" data-aos="fade-up">
+          <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning objectives</h3>
+          <ul>
+            <li>Handle video, audio and images to the programme's technical standards</li>
+            <li>Write clean, responsive HTML that meets WCAG accessibility requirements</li>
+            <li>Apply copyright, Creative Commons and OER attribution rules correctly</li>
+            <li>Run the validation checklist and close out returned corrections</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session__art" data-aos="fade-left">
+        <svg viewBox="0 0 420 300" role="img" aria-label="A module passing an accessibility and quality review">
+          <rect x="90" y="40" width="240" height="220" rx="16" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+          <rect x="118" y="70" width="120" height="10" rx="5" fill="var(--teal)" opacity=".6"/>
+          <g class="check-pop">
+            <circle cx="140" cy="120" r="13" fill="var(--teal)"/><path d="M134 120 l4 4 l8 -9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="164" y="114" width="136" height="12" rx="6" fill="var(--line)"/>
+            <circle cx="140" cy="162" r="13" fill="var(--teal)"/><path d="M134 162 l4 4 l8 -9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="164" y="156" width="110" height="12" rx="6" fill="var(--line)"/>
+            <circle cx="140" cy="204" r="13" fill="var(--gold)"/><path d="M140 198 v8 M140 210 v1" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <rect x="164" y="198" width="124" height="12" rx="6" fill="var(--line)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- QA cards -->
+    <div class="row g-4">
+      <div class="col-md-6 col-xl-3" data-aos="fade-up">
+        <div class="info-card">
+          <i class="fa-solid fa-film info-card__icon" aria-hidden="true"></i>
+          <h4>Multimedia</h4>
+          <p>Upload video through Panopto; embed YouTube or Vimeo rather than uploading copies. Record lectures with a headset, add captions to every video, optimise and resize images before upload, and convert audio to a web format.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="70">
+        <div class="info-card">
+          <i class="fa-brands fa-html5 info-card__icon" aria-hidden="true"></i>
+          <h4>HTML and styling</h4>
+          <p>Headings in order, real lists, real tables with header cells, descriptive link text, responsive images and no fixed pixel widths. Keep CSS and SCSS to the shared classes and give every div a unique prefixed name.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="140">
+        <div class="info-card">
+          <i class="fa-solid fa-universal-access info-card__icon" aria-hidden="true"></i>
+          <h4>Accessibility (WCAG)</h4>
+          <p>Alternative text on images, a logical order for screen readers, sufficient colour contrast, accessible tables and PDFs, full keyboard navigation, and captions on every video. Colour alone never carries meaning.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="210">
+        <div class="info-card">
+          <i class="fa-solid fa-scale-balanced info-card__icon" aria-hidden="true"></i>
+          <h4>Copyright</h4>
+          <p>Know what you may use: copyright basics, Creative Commons licence types, Open Educational Resources, attribution requirements, fair use and the restrictions that come with each licence. Attribute at the point of use.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- contrast demonstration -->
+    <h3 class="block-title" data-aos="fade-up"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Contrast, in practice</h3>
+    <div class="contrast" data-aos="fade-up">
+      <div class="contrast__swatch contrast__swatch--pass">
+        <span class="contrast__ratio">9.1:1</span>
+        <p>Deep teal <code>#02505E</code> on white. Passes AA and AAA at every size.</p>
+        <span class="contrast__verdict"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Use this for body text</span>
+      </div>
+      <div class="contrast__swatch contrast__swatch--ok">
+        <span class="contrast__ratio">4.95:1</span>
+        <p>Brand teal <code>#037B90</code> on white. Passes AA for body text, but falls short of AAA.</p>
+        <span class="contrast__verdict"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Body text, AA only</span>
+      </div>
+      <div class="contrast__swatch contrast__swatch--fail">
+        <span class="contrast__ratio">2.5:1</span>
+        <p>Gold <code>#FF7F50</code> on white. Below 3:1, so it fails even for large headings — keep it for borders, fills and icons that carry no meaning.</p>
+        <span class="contrast__verdict"><i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> Never for text</span>
+      </div>
+    </div>
+
+    <!-- validation flow -->
+    <div class="steps mt-5" data-aos="fade-up">
+      <h3 class="block-title"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> The validation process</h3>
+      <ol class="steps__list steps__list--two">
+        <li><span class="steps__n">1</span><div><strong>Self-check.</strong> Run the checklist yourself. Modules that arrive unchecked are returned without review.</div></li>
+        <li><span class="steps__n">2</span><div><strong>Submit for validation.</strong> Log the module in the tracker with its version and date.</div></li>
+        <li><span class="steps__n">3</span><div><strong>Technical validation.</strong> A validation expert reviews structure, assessment, media and accessibility.</div></li>
+        <li><span class="steps__n">4</span><div><strong>Corrections returned.</strong> Each finding is specific. Fix it, note what you changed, resubmit.</div></li>
+        <li><span class="steps__n">5</span><div><strong>Sign-off.</strong> The module is marked complete and released to the course.</div></li>
+        <li><span class="steps__n">6</span><div><strong>Escalate what you cannot fix.</strong> A missing source file or an unclear diagram goes to your team lead the same day, not next week.</div></li>
+      </ol>
+    </div>
+
+    <div class="row g-4 mt-1">
+      <div class="col-md-7" data-aos="fade-up">
+        <div class="takeaways">
+          <h3><i class="fa-solid fa-key" aria-hidden="true"></i> Key takeaways</h3>
+          <ul>
+            <li>Accessibility is built in as you go; it cannot be retrofitted cheaply</li>
+            <li>An unattributed image is a legal problem, not a formatting problem</li>
+            <li>Returned corrections are information about the standard, not criticism of you</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-5" data-aos="fade-up" data-aos-delay="80">
+        <aside class="callout callout--warn">
+          <h4><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Watch out</h4>
+          <p>Never miss a section. A module that is 90 percent complete is not partly done — it is not done.</p>
+        </aside>
+      </div>
+    </div>
+
+    <nav class="session-nav" aria-label="Session 5 navigation">
+      <a href="#session-4" class="btn btn-ghost"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous</a>
+      <a href="#session-6" class="btn btn-ouk">Next: Completion <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============================================================
+     SESSION 6 — COMPLETION & CERTIFICATION
+     ============================================================ -->
+<section id="session-6" class="session session--alt" data-session="Completion &amp; certification">
+  <div class="container-xl">
+    <div class="session__grid session__grid--flip">
+
+      <div class="session__intro" data-aos="fade-left">
+        <p class="session__no"><span>Session</span> 06</p>
+        <h2 class="session__title"><i class="fa-solid fa-certificate sess-icon float" aria-hidden="true"></i> Completion &amp; certification</h2>
+        <p class="session__lead">
+          The morning ends here and the work begins. This session covers the final assessment,
+          how you submit, what certification requires, and how support continues once you are digitising live.
+        </p>
+
+        <div class="objectives" data-aos="fade-up">
+          <h3><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Learning objectives</h3>
+          <ul>
+            <li>Complete the final assessment and know the pass standard</li>
+            <li>Submit your practice module through the correct channel</li>
+            <li>State the requirements for certification on the programme</li>
+            <li>Know where to get help once you are working on live modules</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="session__art" data-aos="fade-right">
+        <svg viewBox="0 0 420 300" role="img" aria-label="A certificate awarded on completion">
+          <rect x="80" y="56" width="260" height="180" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+          <rect x="106" y="86" width="100" height="10" rx="5" fill="var(--teal)"/>
+          <rect x="106" y="112" width="208" height="7" rx="3.5" fill="var(--line)"/>
+          <rect x="106" y="128" width="180" height="7" rx="3.5" fill="var(--line)"/>
+          <rect x="106" y="156" width="140" height="7" rx="3.5" fill="var(--line)"/>
+          <g class="seal-spin">
+            <circle cx="292" cy="196" r="30" fill="var(--gold)"/>
+            <circle cx="292" cy="196" r="21" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/>
+            <path d="M284 196 l6 6 l12 -14" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <rect x="106" y="192" width="90" height="8" rx="4" fill="var(--line)"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up">
+        <div class="info-card">
+          <i class="fa-solid fa-clipboard-question info-card__icon" aria-hidden="true"></i>
+          <h4>Final assessment</h4>
+          <p>A short practical review of the section you built: structure, question bank, media and accessibility. Assessed against the same checklist validators use.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="70">
+        <div class="info-card">
+          <i class="fa-solid fa-paper-plane info-card__icon" aria-hidden="true"></i>
+          <h4>Submission</h4>
+          <p>Submit through the tracker with the module code, version number and date. Attach nothing by email — the tracker is the record.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="140">
+        <div class="info-card">
+          <i class="fa-solid fa-award info-card__icon" aria-hidden="true"></i>
+          <h4>Certification</h4>
+          <p>Attendance for the full session, a submitted practice section that passes review, and the ten practice tasks completed.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="210">
+        <div class="info-card">
+          <i class="fa-solid fa-people-group info-card__icon" aria-hidden="true"></i>
+          <h4>Support from noon</h4>
+          <p>You are paired with an experienced digitiser and issued a live module. Ask early — a question at 12.30 is cheaper than a rebuild at 4.00.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="closing glass mt-5" data-aos="zoom-in">
+      <h3>Closing remarks</h3>
+      <p>
+        You now know the workflow, the standards and where the traps are. What separates a good digitiser
+        from an average one is not speed — it is attention to detail, and never leaving a section half done.
+        Take the checklist seriously, ask questions early, and the modules you publish will hold up for years.
+      </p>
+      <p class="closing__sign">Directorate of Information &amp; Communications Technology</p>
+    </div>
+
+    <nav class="session-nav" aria-label="Session 6 navigation">
+      <a href="#session-5" class="btn btn-ghost"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous</a>
+      <a href="#faq" class="btn btn-ouk">Read the FAQs <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section id="faq" class="section section--tint">
+  <div class="container-xl">
+    <header class="section-head" data-aos="fade-up">
+      <p class="eyebrow"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Questions</p>
+      <h2>Frequently asked</h2>
+    </header>
+
+    <div class="accordion ouk-accordion ouk-accordion--wide" id="faqAcc" data-aos="fade-up">
+      <div class="accordion-item">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f1">How much may I rely on AI?</button></h3>
+        <div id="f1" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">
+          Use it for structure, summarising, first-draft quiz items, translation and grammar. Do not use it to decide what is true. You read every line against the source before it is saved, and you are accountable for what the module says.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">What if the source material is incomplete?</button></h3>
+        <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">
+          Do not fill the gap yourself. Log it in the tracker, flag it to your team lead the same day, and continue with the sections you can complete.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">Page, Book or File — how do I decide?</button></h3>
+        <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">
+          Page for one screen of content, Book when a topic has chapters a student moves through in order, File only when the student genuinely needs to download and keep the document. If in doubt, keep it in Moodle rather than in an attachment.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">Can I use an image I found online?</button></h3>
+        <div id="f4" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">
+          Only if the licence allows it and you attribute it as the licence requires. Prefer Open Educational Resources and Creative Commons material, and record the source next to the image in your working folder.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f5">My module was returned with corrections. What now?</button></h3>
+        <div id="f5" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">
+          Work through each finding, note what you changed, and resubmit through the tracker. If a finding is unclear, ask the validator directly rather than guessing.
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container-xl">
+    <div class="row g-4">
+
+      <div class="col-lg-4">
+        <img src="https://ouk.ac.ke/sites/default/files/gallery/logo_footer.png"
+             alt="Open University of Kenya" class="footer__logo"
+             onerror="this.classList.add('is-missing')">
+        <p class="footer__blurb">
+          Directorate of Information &amp; Communications Technology.
+          Training guide for the digitisation of 4.2 semester undergraduate courses.
+        </p>
+      </div>
+
+      <div class="col-6 col-lg-2">
+        <h4>Sessions</h4>
+        <ul class="footer__links">
+          <li><a href="#session-1">1. Introduction</a></li>
+          <li><a href="#session-2">2. Environment</a></li>
+          <li><a href="#session-3">3. Core workflow</a></li>
+          <li><a href="#session-4">4. Practical</a></li>
+          <li><a href="#session-5">5. Quality assurance</a></li>
+          <li><a href="#session-6">6. Completion</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <h4>On this page</h4>
+        <ul class="footer__links">
+          <li><a href="#roadmap">Training roadmap</a></li>
+          <li><a href="#anatomy">Module anatomy</a></li>
+          <li><a href="#checklist">Practice checklist</a></li>
+          <li><a href="#faq">Frequently asked</a></li>
+          <li><a href="#top">Back to the top</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3">
+        <h4>Contact</h4>
+        <ul class="footer__contact">
+          <li><i class="fa-solid fa-globe" aria-hidden="true"></i> <a href="https://digitisation.ouk.ac.ke" target="_blank" rel="noopener">digitisation.ouk.ac.ke</a></li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:ictsupport@ouk.ac.ke">ictsupport@ouk.ac.ke</a></li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:somas@ouk.ac.ke">somas@ouk.ac.ke</a></li>
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Nairobi, Kenya</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__base">
+      <p>Directorate of ICT &copy; <span id="year">2026</span> Open University of Kenya. All rights reserved.</p>
+      <p class="footer__note">Built for internal training use.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="toTop" class="to-top" type="button" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- Cookie notice -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie notice" hidden>
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__copy">
+      <span class="cookie-banner__icon" aria-hidden="true"><i class="fa-solid fa-cookie-bite"></i></span>
+      <div>
+        <p class="cookie-banner__title">We use a few cookies</p>
+        <p class="cookie-banner__text">
+          Open University of Kenya stores only what keeps this guide useful — your theme choice,
+          checklist progress, and whether you have seen this notice. No advertising trackers.
+          See our notes in the <a href="#faq">FAQs</a> or write to
+          <a href="mailto:ictsupport@ouk.ac.ke">ictsupport@ouk.ac.ke</a>.
+        </p>
+      </div>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie="essential">Essential only</button>
+      <button type="button" class="cookie-banner__btn cookie-banner__btn--ok" data-cookie="accept">Accept cookies</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
