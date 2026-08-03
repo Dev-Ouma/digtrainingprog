@@ -71,10 +71,13 @@
 /* ---------- 2. BASE & TYPOGRAPHY --------------------------- */
 *{ box-sizing:border-box; }
 
-/* overflow-x must sit on <html>, not just <body>: AOS parks fade-left /
-   fade-right blocks off-screen until they animate in, and on narrow
-   viewports that leaks a horizontal scrollbar across the whole site. */
-html{ scroll-behavior:smooth; scroll-padding-top:var(--header-h); overflow-x:hidden; }
+/* AOS parks fade-left / fade-right blocks off-screen until they animate in,
+   which leaks a horizontal scrollbar on narrow viewports. This must be
+   `clip`, never `hidden`: `overflow-x:hidden` forces overflow-y to compute
+   to `auto`, turning <html> and <body> into scroll containers — and that
+   silently breaks every position:sticky inside them (the header and the
+   anatomy panel). `clip` trims the same overflow without creating one. */
+html{ scroll-behavior:smooth; scroll-padding-top:var(--header-h); overflow-x:clip; }
 
 body{
   margin:0;
@@ -84,7 +87,7 @@ body{
   font-size:1rem;
   line-height:1.68;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  overflow-x:clip;
   transition:background .35s ease, color .35s ease;
 }
 

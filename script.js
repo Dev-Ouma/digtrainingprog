@@ -547,7 +547,7 @@
         const offset = parseInt(
           getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 112;
         window.scrollTo({
-          top: target.getBoundingClientRect().top + window.scrollY - offset + 4,
+          top: target.getBoundingClientRect().top + window.scrollY - offset - 8,
           behavior: reduceMotion ? 'auto' : 'smooth'
         });
       });
@@ -862,7 +862,7 @@
       if (!el) return;
       const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 112;
       window.scrollTo({
-        top: el.getBoundingClientRect().top + window.scrollY - offset + 4,
+        top: el.getBoundingClientRect().top + window.scrollY - offset - 8,
         behavior: reduceMotion ? 'auto' : 'smooth'
       });
       el.classList.remove('search-hit-flash');
