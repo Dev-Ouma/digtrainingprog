@@ -73,6 +73,7 @@
           <li class="nav-item"><a class="nav-link" href="#session-1">Sessions</a></li>
           <li class="nav-item"><a class="nav-link" href="#checklist">Checklist</a></li>
           <li class="nav-item"><a class="nav-link" href="#faq">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#navigation-directive"><i class="fa-solid fa-compass me-1"></i> Standards <span class="badge-urgent-nav ms-1">Urgent</span></a></li>
           <li class="nav-item">
             <a class="nav-cta" href="fullprog.html" target="_blank" rel="noopener">
               Full programme <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
@@ -137,6 +138,7 @@
         <button type="button" class="search-chip" data-query="checklist" role="listitem">Checklist</button>
         <button type="button" class="search-chip" data-query="Moodle" role="listitem">Moodle</button>
         <button type="button" class="search-chip" data-query="H5P" role="listitem">H5P</button>
+        <button type="button" class="search-chip" data-query="navigation" role="listitem">Navigation directive</button>
         <button type="button" class="search-chip" data-query="core workflow" role="listitem">Core workflow</button>
       </div>
     </div>
@@ -1288,6 +1290,258 @@
   </div>
 </section>
 
+<!-- ============================================================
+     CRITICAL DIRECTIVE: NAVIGATION & RESOURCE DESIGN STANDARDS
+     ============================================================ -->
+<section id="navigation-directive" class="section section--alt directive-section">
+  <div class="container-xl">
+
+    <!-- Urgent Header Alert -->
+    <div class="directive-alert" data-aos="fade-up">
+      <div class="directive-alert__badge">
+        <span class="pulse-dot"></span> Urgent Directive &middot; All Digitisation Teams
+      </div>
+      <div class="directive-alert__body">
+        <div class="directive-alert__icon" aria-hidden="true">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <h2 class="directive-alert__title">Course Navigation &amp; Resource Display Standards</h2>
+          <p class="directive-alert__text">
+            <strong>Hi Team:</strong> We must urgently address a critical navigation challenge in terms of our course programming across all digitised modules.
+            Normally, when a student is progressing through a course, <strong>the main course index tab should remain undisturbed</strong> as one navigates through other elements.
+            Opening resources directly on the same main page overwrites the index and disorients learners. Resources must either appear <strong>within the same frame and well embedded</strong>, or open in a <strong>new tab</strong> so the main tab is untouched. Treat this as urgent across all courses you are working on.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The 3 Core Pillars -->
+    <div class="row g-4 mt-1">
+      <!-- Pillar 1 -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="50">
+        <div class="directive-pillar">
+          <div class="directive-pillar__header">
+            <span class="directive-pillar__num">01</span>
+            <span class="directive-pillar__tag directive-pillar__tag--danger">Critical Rule</span>
+          </div>
+          <div class="directive-pillar__icon">
+            <i class="fa-solid fa-compass"></i>
+          </div>
+          <h3>Course Index Preservation</h3>
+          <p class="directive-pillar__lead">
+            The learner’s primary course window must remain anchored and untouched at all times.
+          </p>
+          <ul class="directive-pillar__list">
+            <li><strong>The Challenge:</strong> When an article or file launches in the same window, it hijacks the student’s course index, destroys reading state, and requires repeated back-button clicks to restore.</li>
+            <li><strong>The Requirement:</strong> Never overwrite the active course tab. Every supplementary reading, file, or activity must open non-destructively.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="directive-pillar">
+          <div class="directive-pillar__header">
+            <span class="directive-pillar__num">02</span>
+            <span class="directive-pillar__tag directive-pillar__tag--teal">Display Architecture</span>
+          </div>
+          <div class="directive-pillar__icon">
+            <i class="fa-solid fa-window-restore"></i>
+          </div>
+          <h3>Embed or target="_blank"</h3>
+          <p class="directive-pillar__lead">
+            Every file, article, and resource must implement one of two approved pathways:
+          </p>
+          <ul class="directive-pillar__list">
+            <li><strong>Option A &mdash; In-Frame Embed:</strong> For files uploaded to SOMAS, configure <code>Appearance &rarr; Display: Embed</code> so the document renders inside the Moodle frame with breadcrumbs intact.</li>
+            <li><strong>Option B &mdash; New Window / Tab:</strong> For hyperlinks and HTML articles, append <code>target="_blank" rel="noopener noreferrer"</code> to open the destination safely in a new tab.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="directive-pillar">
+          <div class="directive-pillar__header">
+            <span class="directive-pillar__num">03</span>
+            <span class="directive-pillar__tag directive-pillar__tag--gold">Typography Standard</span>
+          </div>
+          <div class="directive-pillar__icon">
+            <i class="fa-solid fa-font"></i>
+          </div>
+          <h3>Strip Inline font-family</h3>
+          <p class="directive-pillar__lead">
+            Avoid hardcoded font types &mdash; let the system typography render naturally.
+          </p>
+          <ul class="directive-pillar__list">
+            <li><strong>The Issue:</strong> Hardcoding <code>font-family: Calibri, Arial, sans-serif;</code> overrides university design rules, breaks responsive mobile rendering, and creates jarring contrast bugs in dark mode.</li>
+            <li><strong>The Standard:</strong> Delete <code>font-family</code> from your style attributes. Let SOMAS and device system fonts render text while retaining custom card borders, gradients, and padding.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deep Dive 1: Option A - Moodle Appearance Embed Configuration -->
+    <div class="row g-4 mt-3 align-items-stretch">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="moodle-config-card">
+          <span class="config-card__badge">
+            <i class="fa-solid fa-sliders"></i> Option A &middot; SOMAS File Appearance Settings
+          </span>
+          <h3 class="mb-3">Configuring In-Frame Resource Embedding</h3>
+          <p>
+            When adding a File resource in SOMAS / Moodle, avoid default display settings that force automatic downloads or overwrite the course index. Configure the <strong>Appearance</strong> panel exactly as specified below:
+          </p>
+          <div class="config-steps">
+            <div class="config-step">
+              <div class="config-step__num">1</div>
+              <div class="config-step__text">
+                <strong>Set Display dropdown to "Embed":</strong>
+                <span>Renders the document, PDF, or interactive asset directly inside the SOMAS course content window so the student never leaves the page.</span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="config-step__num">2</div>
+              <div class="config-step__text">
+                <strong>Check "Display resource description":</strong>
+                <span>Displays your framing rationale, reading instructions, and prompt guidance directly on the course page alongside the resource.</span>
+              </div>
+            </div>
+            <div class="config-step">
+              <div class="config-step__num">3</div>
+              <div class="config-step__text">
+                <strong>Leave file metadata unchecked:</strong>
+                <span>Keep "Show size", "Show type", and "Show upload/modified date" unticked unless specifically needed, preserving a clean and focused visual hierarchy.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="moodle-screenshot-card h-100 d-flex flex-column">
+          <div class="screenshot-card__header">
+            <div class="window-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="screenshot-card__title"><i class="fa-solid fa-gear"></i> Moodle Appearance &rarr; Embed Configuration</span>
+          </div>
+          <div class="screenshot-card__image-wrap flex-grow-1 d-flex flex-column justify-content-center">
+            <img src="img/moodle-appearance-embed.png" alt="Moodle Appearance Settings showing Display set to Embed and Display resource description checked" class="img-fluid">
+            <div class="screenshot-card__callout">
+              <i class="fa-solid fa-circle-check text-success me-1"></i> Display: <strong>Embed</strong> &bull; Resource description: <strong>Checked</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deep Dive 2: Option B + Font Sanitisation (Live Preview & Production Code) -->
+    <div class="row g-4 mt-3">
+      <div class="col-12" data-aos="fade-up">
+        <div class="template-showcase">
+          <div class="template-showcase__header">
+            <div>
+              <p class="eyebrow mb-1"><i class="fa-solid fa-code"></i> Production Template</p>
+              <h3 class="mb-0">Option B &amp; Clean Typography: Ready-to-Use Moodle Card</h3>
+            </div>
+            <div class="template-showcase__actions">
+              <span class="badge-sanitised"><i class="fa-solid fa-check"></i> font-family removed</span>
+              <span class="badge-sanitised"><i class="fa-solid fa-check"></i> target="_blank" enabled</span>
+              <button type="button" class="btn btn-ouk btn-sm btn-copy-code" data-copy-target="#cleanMoodleHtml">
+                <i class="fa-solid fa-copy me-1"></i> <span>Copy Clean HTML</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="row g-4 p-4 align-items-stretch">
+            <!-- Left: Live Rendered Preview -->
+            <div class="col-lg-6">
+              <div class="preview-box">
+                <div class="preview-box__title">
+                  <span><i class="fa-solid fa-eye me-1 text-teal"></i> Live Rendered Preview in SOMAS</span>
+                  <small class="text-muted">Dual-border branded card</small>
+                </div>
+                <div class="preview-box__canvas">
+                  <!-- The Exact Live Component with cleaned styles -->
+                  <div class="moodle-article-callout">
+                    <p dir="ltr" style="text-align: left; margin: 0;">
+                      You are provided with an article on 
+                      <a href="https://somas.ouk.ac.ke/mod/resource/view.php?id=2692" target="_blank" rel="noopener noreferrer" class="moodle-article-link">
+                        "Roles of personality types, emotional intelligence and gender differences on prosocial behavior."
+                      </a> 
+                      It is important that you read through the resource and then respond to the discussion activity that follows:
+                    </p>
+                  </div>
+                </div>
+                <div class="preview-box__notes">
+                  <div class="note-item">
+                    <i class="fa-solid fa-circle-check text-success"></i>
+                    <span><strong>System typography:</strong> Uses LMS system font &mdash; clean, responsive, and legible on all devices.</span>
+                  </div>
+                  <div class="note-item">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-gold"></i>
+                    <span><strong>Tab security:</strong> Opens in new tab via <code>target="_blank" rel="noopener noreferrer"</code> leaving main index untouched.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Production-Ready HTML Code Snippet -->
+            <div class="col-lg-6">
+              <div class="code-box">
+                <div class="code-box__top">
+                  <span class="code-box__lang"><i class="fa-brands fa-html5 text-danger me-1"></i> Clean Moodle HTML</span>
+                  <span class="code-box__note">Paste directly into Moodle HTML source editor (&lt;/&gt;)</span>
+                </div>
+                <pre class="code-box__pre"><code id="cleanMoodleHtml">&lt;div style="font-size: 18px; line-height: 1.7; color: #333333; padding: 22px; margin-top: 20px; border-left: 6px solid #037b90; border-right: 6px solid #ff7f50; border-radius: 12px; background: linear-gradient(135deg, #ffffff 0%, #f0f9fb 50%, #fff6ef 100%); box-shadow: 0 3px 10px rgba(0,0,0,0.06);"&gt;
+    &lt;p dir="ltr" style="text-align: left; margin: 0;"&gt;
+        You are provided with an article on 
+        &lt;a href="https://somas.ouk.ac.ke/mod/resource/view.php?id=2692" target="_blank" rel="noopener noreferrer" style="color: #037b90; font-weight: bold; text-decoration: underline;"&gt;
+            "Roles of personality types, emotional intelligence and gender differences on prosocial behavior."
+        &lt;/a&gt; 
+        It is important that you read through the resource and then respond to the discussion activity that follows:
+    &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+
+              <!-- Comparison Diff -->
+              <div class="diff-breakdown mt-3">
+                <div class="diff-line diff-line--del">
+                  <i class="fa-solid fa-minus text-danger me-2"></i>
+                  <span><code>&minus; font-family: Calibri, Arial, sans-serif;</code> <small>(Removed to avoid device font conflicts)</small></span>
+                </div>
+                <div class="diff-line diff-line--add">
+                  <i class="fa-solid fa-plus text-success me-2"></i>
+                  <span><code>+ target="_blank" rel="noopener noreferrer"</code> <small>(Guarantees main course tab stays untouched)</small></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-Publish QA Sign-Off Callout -->
+    <div class="row g-4 mt-3">
+      <div class="col-12" data-aos="fade-up">
+        <div class="callout callout--warn p-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+          <div>
+            <h4 class="mb-1" style="font-size:1.1rem;"><i class="fa-solid fa-clipboard-check text-gold"></i> Pre-Publish QA Sign-Off Checklist</h4>
+            <p class="mb-0">Before submitting any digitised course for final QA sign-off, verify that all external links specify <code>target="_blank"</code>, uploaded file resources are set to <code>Embed</code> with descriptions active, and no inline <code>font-family</code> declarations exist.</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="#checklist" class="btn btn-ghost btn-sm text-nowrap"><i class="fa-solid fa-list-check me-1"></i> Practice Checklist</a>
+            <a href="#top" class="btn btn-ouk btn-sm text-nowrap"><i class="fa-solid fa-arrow-up me-1"></i> Back to Top</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 </main>
 
 <!-- ============================================================
@@ -1326,6 +1580,7 @@
           <li><a href="#anatomy">Module anatomy</a></li>
           <li><a href="#checklist">Practice checklist</a></li>
           <li><a href="#faq">Frequently asked</a></li>
+          <li><a href="#navigation-directive">Navigation &amp; resource directive</a></li>
           <li><a href="#top">Back to the top</a></li>
         </ul>
       </div>

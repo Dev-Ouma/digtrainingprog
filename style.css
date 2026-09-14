@@ -1477,6 +1477,577 @@ body, .session, .section, .info-card, .takeaways,
   to  { clip-path:circle(150% at var(--tx, 90%) var(--ty, 4%)); }
 }
 
+/* ---------- 12c. NAVIGATION & RESOURCE DIRECTIVE ---------- */
+.directive-section {
+  position: relative;
+  border-top: 1px solid var(--line);
+  background: var(--bg-alt);
+  padding: 5rem 0;
+}
+
+.directive-alert {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 12%, var(--surface)) 0%, var(--surface) 100%);
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--line));
+  border-left: 6px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1.8rem 2.2rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.directive-alert::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold) 20%, transparent) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.directive-alert__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B43403;
+  background: rgba(255, 127, 80, 0.16);
+  border: 1px solid rgba(255, 127, 80, 0.35);
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .directive-alert__badge {
+  color: #FFA585;
+  background: rgba(255, 127, 80, 0.22);
+}
+
+.pulse-dot {
+  width: 9px;
+  height: 9px;
+  background-color: var(--gold);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(255, 127, 80, 0.7);
+  animation: pulse-ring 1.8s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 127, 80, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 127, 80, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 127, 80, 0); }
+}
+
+.directive-alert__body {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.directive-alert__icon {
+  flex: none;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: var(--gold);
+  color: #FFFFFF;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  box-shadow: 0 6px 18px rgba(255, 127, 80, 0.35);
+}
+
+.directive-alert__title {
+  font-size: 1.65rem;
+  margin: 0 0 0.6rem;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.directive-alert__text {
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Pillar cards */
+.directive-pillar {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.6rem;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  position: relative;
+}
+
+.directive-pillar:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--teal);
+}
+
+.directive-pillar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.directive-pillar__num {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  letter-spacing: -0.03em;
+}
+
+.directive-pillar__tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+
+.directive-pillar__tag--danger {
+  background: rgba(220, 53, 69, 0.12);
+  color: #DC3545;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.directive-pillar__tag--teal {
+  background: var(--tint);
+  color: var(--teal);
+  border: 1px solid color-mix(in srgb, var(--teal) 30%, transparent);
+}
+
+.directive-pillar__tag--gold {
+  background: rgba(255, 127, 80, 0.12);
+  color: var(--gold);
+  border: 1px solid rgba(255, 127, 80, 0.3);
+}
+
+.directive-pillar__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--tint);
+  color: var(--teal);
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  margin-bottom: 1.1rem;
+}
+
+.directive-pillar h3 {
+  font-size: 1.25rem;
+  margin: 0 0 0.65rem;
+}
+
+.directive-pillar__lead {
+  font-size: 0.94rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.2rem;
+  line-height: 1.58;
+}
+
+.directive-pillar__list {
+  list-style: none;
+  padding: 0;
+  margin: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.directive-pillar__list li {
+  font-size: 0.9rem;
+  line-height: 1.58;
+  color: var(--ink-soft);
+  padding: 0.7rem 0.85rem;
+  background: var(--tint);
+  border-radius: 10px;
+  border-left: 3px solid var(--teal);
+}
+
+.directive-pillar__list li strong {
+  color: var(--ink);
+}
+
+/* Moodle Config Card */
+.moodle-config-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2.2rem;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+}
+
+.config-card__badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--teal);
+  background: var(--tint);
+  padding: 0.38rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 1.1rem;
+}
+
+.config-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.config-step {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+}
+
+.config-step__num {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--teal);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
+}
+
+.config-step__text {
+  font-size: 0.93rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.config-step__text strong {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+/* Moodle Screenshot Card */
+.moodle-screenshot-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform .3s ease;
+}
+
+.moodle-screenshot-card:hover {
+  transform: translateY(-4px);
+}
+
+.screenshot-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.4rem;
+  background: color-mix(in srgb, var(--surface) 80%, var(--tint));
+  border-bottom: 1px solid var(--line);
+}
+
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.window-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line);
+  display: inline-block;
+}
+
+.window-dots span:nth-child(1) { background: #FF5F56; }
+.window-dots span:nth-child(2) { background: #FFBD2E; }
+.window-dots span:nth-child(3) { background: #27C93F; }
+
+.screenshot-card__title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.screenshot-card__image-wrap {
+  padding: 1.4rem;
+  text-align: center;
+  background: #FFFFFF;
+}
+
+.screenshot-card__image-wrap img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.screenshot-card__callout {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  font-family: var(--font-mono);
+  color: var(--teal-deep);
+  background: var(--tint);
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* Template Showcase */
+.template-showcase {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.template-showcase__header {
+  padding: 1.5rem 2rem;
+  background: var(--tint);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.template-showcase__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.badge-sanitised {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #198754;
+  background: rgba(25, 135, 84, 0.12);
+  border: 1px solid rgba(25, 135, 84, 0.3);
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+}
+
+[data-theme="dark"] .badge-sanitised {
+  color: #4ADE80;
+  background: rgba(74, 222, 128, 0.16);
+}
+
+/* Preview Box */
+.preview-box {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1.4rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-box__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink);
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px dashed var(--line);
+}
+
+.preview-box__canvas {
+  flex: 1;
+  padding: 0.75rem 0;
+  display: flex;
+  align-items: center;
+}
+
+/* The actual Moodle callout card */
+.moodle-article-callout {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #333333;
+  padding: 22px;
+  border-left: 6px solid #037b90;
+  border-right: 6px solid #ff7f50;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9fb 50%, #fff6ef 100%);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  width: 100%;
+}
+
+[data-theme="dark"] .moodle-article-callout {
+  color: #E9F2F3;
+  background: linear-gradient(135deg, #16262A 0%, #102C32 50%, #1E2325 100%);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.3);
+}
+
+.moodle-article-link {
+  color: #037b90;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color .2s ease;
+}
+
+[data-theme="dark"] .moodle-article-link {
+  color: #38B4C9;
+}
+
+.moodle-article-link:hover {
+  color: #FF7F50;
+}
+
+.preview-box__notes {
+  margin-top: 1.2rem;
+  padding-top: 0.95rem;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.note-item {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+/* Code Box */
+.code-box {
+  background: #182024;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.code-box__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.15rem;
+  background: #11171A;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #9DB4BA;
+}
+
+.code-box__pre {
+  margin: 0;
+  padding: 1.3rem 1.15rem;
+  background: transparent;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.83rem;
+  line-height: 1.68;
+  color: #E6F1F3;
+}
+
+.code-box__pre code {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Diff breakdown */
+.diff-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.diff-line {
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
+
+.diff-line--del {
+  background: rgba(220, 53, 69, 0.08);
+  border: 1px solid rgba(220, 53, 69, 0.25);
+  color: #DC3545;
+}
+
+[data-theme="dark"] .diff-line--del {
+  color: #FF7B88;
+}
+
+.diff-line--add {
+  background: rgba(25, 135, 84, 0.08);
+  border: 1px solid rgba(25, 135, 84, 0.25);
+  color: #198754;
+}
+
+[data-theme="dark"] .diff-line--add {
+  color: #56D364;
+}
+
+.btn-copy-code.btn-copy-success {
+  background: #198754 !important;
+  border-color: #198754 !important;
+  color: #fff !important;
+}
+
+.badge-urgent-nav {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: var(--gold);
+  color: #FFFFFF;
+  padding: 0.2rem 0.48rem;
+  border-radius: 4px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767.98px) {
+  .directive-alert__body { flex-direction: column; gap: 1rem; }
+  .directive-alert { padding: 1.4rem; }
+  .template-showcase__header { padding: 1.2rem; }
+}
+
 /* ---------- 13. ACCESSIBILITY & PRINT ---------------------- */
 :focus-visible{
   outline:3px solid var(--gold);

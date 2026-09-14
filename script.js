@@ -83,6 +83,7 @@
     initNavBehaviour();
     initSearch();
     initCookieBanner();
+    initDirectiveWidgets();
     $('#year').textContent = new Date().getFullYear();
   }
 
@@ -1009,6 +1010,54 @@
 
     // slight delay so the page paints first, then the banner rises
     setTimeout(show, reduceMotion ? 0 : 700);
+  }
+
+  /* ---------- 15. DIRECTIVE WIDGETS & COPY CODE ----------- */
+  function initDirectiveWidgets () {
+    const copyBtns = $$('.btn-copy-code');
+    copyBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetSel = btn.getAttribute('data-copy-target');
+        const targetEl = targetSel ? $(targetSel) : null;
+        if (!targetEl) return;
+
+        const codeText = targetEl.textContent;
+        const setCopied = () => {
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = '<i class="fa-solid fa-check me-1"></i> <span>Copied!</span>';
+          btn.classList.add('btn-copy-success');
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('btn-copy-success');
+          }, 2400);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(codeText).then(setCopied).catch(() => {
+            fallbackCopy(codeText, setCopied);
+          });
+        } else {
+          fallbackCopy(codeText, setCopied);
+        }
+      });
+    });
+
+    function fallbackCopy (text, callback) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        callback();
+      } catch (e) {
+        console.warn('Copy command failed', e);
+      }
+      document.body.removeChild(ta);
+    }
   }
 
   /* ---------- UTILITY ------------------------------------- */
